@@ -37,7 +37,7 @@ FA-SEAL follows a client–server architecture with a dedicated analysis compone
 
 ## ⚙️ Quick Start
 
-To get started, clone the repository and follow the setup instructions in [instruction.md].
+To get started, clone the repository and follow the setup instructions in [instruction.md](instruction.md).
 
 ```bash
 git clone https://github.com/BasantaChaulagain/faseal
