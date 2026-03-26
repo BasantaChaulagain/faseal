@@ -21,7 +21,7 @@ FA-SEAL solves this by:
 
 FA-SEAL (Forensically Analyzable Symmetric Encryption for Audit Logs) is a novel system that enables forensic analysis directly on encrypted audit logs while exclusively disclosing only cyberattack-relevant events to third-party investigators.
 
-![FA-SEAL Architecture](design.pdf)
+![FA-SEAL Architecture](overview.png)
 
 FA-SEAL operates in two phases: audit log ingestion and forensic analysis. During ingestion, FA-SEAL leverages symmetric encryption to encrypt audit logs while maintaining indexes for efficient and selective searching. To further optimize performance, we employ segmentation and clustering techniques. These techniques break down the logs into manageable parts that can be independently encrypted and decrypted, improving both ingestion speed and analysis efficiency. In the analysis phase, investigators can issue queries to FA-SEAL and receive causal graphs without exposing any incident-unrelated information.
 
