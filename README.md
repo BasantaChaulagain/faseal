@@ -1,6 +1,27 @@
-# Overview
+## 🚀 FA-SEAL: Forensic Analysis on Encrypted Audit Logs
 
-FA-SEAL (Forensically Analyzable Symmetric Encryption for Audit Logs) is a novel system that enables forensic anal- ysis directly on encrypted audit logs while exclusively disclosing only cyberattack-relevant events to third-party investigators.
+FA-SEAL is a system that enables **forensic investigation directly on encrypted audit logs**, revealing only attack-relevant information.
+
+### ⚡ Key Highlights
+- Processes ~30GB/day logs in ~90 minutes (single core)
+- Discloses only **0.68% of sensitive data**
+- Supports forward & backward attack tracing
+- Designed for **privacy-preserving, scalable security analytics**
+
+## ❓ Why FA-SEAL?
+
+Traditional forensic analysis requires full access to audit logs, exposing sensitive data.
+
+FA-SEAL solves this by:
+- Keeping logs encrypted
+- Revealing only attack-relevant information
+- Enabling secure collaboration with external investigators
+
+## Overview 
+
+FA-SEAL (Forensically Analyzable Symmetric Encryption for Audit Logs) is a novel system that enables forensic analysis directly on encrypted audit logs while exclusively disclosing only cyberattack-relevant events to third-party investigators.
+
+![FA-SEAL Architecture](design.pdf)
 
 FA-SEAL operates in two phases: audit log ingestion and forensic analysis. During ingestion, FA-SEAL leverages symmetric encryption to encrypt audit logs while maintaining indexes for efficient and selective searching. To further optimize performance, we employ segmentation and clustering techniques. These techniques break down the logs into manageable parts that can be independently encrypted and decrypted, improving both ingestion speed and analysis efficiency. In the analysis phase, investigators can issue queries to FA-SEAL and receive causal graphs without exposing any incident-unrelated information.
 
@@ -8,13 +29,14 @@ This repo contains the source code of implementation of FA-SEAL. It is a client-
 
 The 'client' folder contains the source code for ingestion of logs. The 'investigator' directory contains the scripts for performing forensic analysis along with the benchmarking scripts required for the evaluation. The folder 'jmap' contains the code to pack and unpack messages between the client and the server. The server-side functions during ingestion and forensic analysis is contained the 'server' directory. The 'tracking' folder contains the core backend code for log analysis, which is responsible to find the dependency relationship between entities (file, process, network sockets) and generate provenance graph out of it. 
 
-## Environment
+
+## Usage Instruction
 
 This system is tested on Ubuntu 20.04.06 and 24.04. The python version is 3.8.10 (pip version 20.0.2) and cpp(g++) version is 9.4.0. Other python dependencies of the project are written in requirements.txt file. Install all the requirements before running the project.
 
 Audit log data used in the evaluation of this project can be found [here](https://outlookuga-my.sharepoint.com/:u:/g/personal/bc67288_uga_edu/EVdHuXtXwclEvuhlXmA8cHwB8NdHkwwk_xIck92h-gviGQ?e=I0C8HI). We pre-process the raw audit log and convert it to a csv with all the information required for forensic analysis. Each event is represented by a 35-fields csv, the details of which can be found in [tracking/README_CSV.txt](tracking/README_CSV.txt).
 
-## Configuration and Set-up
+### Configuration and Set-up
 
 1. Install Python3(3.8.10), pip3(20.0.2) and python3-venv.
 
@@ -45,7 +67,7 @@ Audit log data used in the evaluation of this project can be found [here](https:
     cp AUDIT_ft ../client/
 ```
 
-## Log Ingestion
+### Log Ingestion
 
 1. Run the server program in a separate terminal inside a virtual environment. The server program is hosted in localhost port 5000, which represents a remote cloud server. Keep it running as long as you are using the system for ingestion and forensic analysis.
 ```
@@ -69,7 +91,7 @@ Audit log data used in the evaluation of this project can be found [here](https:
 
 Note: -u is for ingesting/updating a log file. For other options, see `python client.py -h`.
 
-## Forensic Analysis
+### Forensic Analysis
 
 Forensic analysis is can either by backtracking or forward tracking. Investigator needs to specify the type of analysis (backtracking or AUDIT_ft), process identifier (pid) or file inode to analyze and the audit log file containing the attack logs.
 
@@ -90,3 +112,8 @@ dot -T png AUDIT_ft.gv -o output_graphs/graph1.png
 ./forensics.sh bt a1.data_theft.csv p 489755
 dot -T png AUDIT_bt.gv -o output_graphs/graph2.png
 ```
+
+## 📄 Publication
+
+FA-SEAL: Forensically Analyzable Symmetric Encryption for Audit Logs  
+[ACSAC 2024](https://ieeexplore.ieee.org/document/10917745)
