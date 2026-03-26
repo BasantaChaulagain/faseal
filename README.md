@@ -1,6 +1,8 @@
 ## 🚀 FA-SEAL: Forensic Analysis on Encrypted Audit Logs
 
-FA-SEAL is a system that enables **forensic investigation directly on encrypted audit logs**, revealing only attack-relevant information.
+FA-SEAL is a system that enables **forensic investigation directly on encrypted audit logs**, exposing only minimal, attack-relevant data.
+
+Designed for scenarios where audit logs must remain confidential (e.g., cloud environments, outsourced incident response).
 
 ### ⚡ Key Highlights
 - Processes ~30GB/day logs in ~90 minutes (single core)
@@ -19,14 +21,14 @@ FA-SEAL solves this by:
 
 ## 🏗️ System Overview
 
-![FA-SEAL Architecture](overview.png)
-
-FA-SEAL consists of:
+FA-SEAL follows a client–server architecture with a dedicated analysis component. FA-SEAL consists of:
 - **Client**: log ingestion and encryption  
 - **Server**: encrypted log storage  
 - **Investigator**: query and forensic analysis  
 
-### 🔍 Example Workflow
+![FA-SEAL Architecture](overview.png)
+
+### 🔍 End-to-End Workflow
 
 1. Logs are collected and encrypted on the client  
 2. Encrypted logs are stored on the server  
@@ -35,7 +37,7 @@ FA-SEAL consists of:
 
 ## ⚙️ Quick Start
 
-To get started, clone this repo and follow the instructions detailed in this [document](instruction.md).
+To get started, clone the repository and follow the setup instructions in [instruction.md].
 
 ```bash
 git clone https://github.com/BasantaChaulagain/faseal
@@ -43,7 +45,7 @@ git clone https://github.com/BasantaChaulagain/faseal
 
 ## 📊 Performance
 
-- 30GB logs processed in ~90 minutes (single core)
+- 30GB logs processed in ~90 minutes (single core, experimental setup)
 - 0.68% data exposure during investigation
 - Efficient forward and backward attack tracing
 
@@ -51,5 +53,19 @@ git clone https://github.com/BasantaChaulagain/faseal
 
 ## 📄 Publication
 
-FA-SEAL: Forensically Analyzable Symmetric Encryption for Audit Logs  
-[ACSAC 2024](https://ieeexplore.ieee.org/document/10917745)
+**FA-SEAL: Forensically Analyzable Symmetric Encryption for Audit Logs**. Published at *ACSAC 2024*  
+
+🔗 [Read the paper](https://ieeexplore.ieee.org/document/10917745)
+
+### 📌 Citation
+
+```
+@article{Chaulagain2024FASEAL,
+  title={FA-SEAL: Forensically Analyzable Symmetric Encryption for Audit Logs},
+  author={Basanta Chaulagain and Kyu Hyung Lee},
+  journal={2024 Annual Computer Security Applications Conference (ACSAC)},
+  year={2024},
+  pages={716-732},
+  url={https://ieeexplore.ieee.org/document/10917745}
+}
+```
